@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MedianFive",
+            "request": "launch",
+            "mainClass": "MedianFive",
+            "projectName": "Java_861d76bd"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
