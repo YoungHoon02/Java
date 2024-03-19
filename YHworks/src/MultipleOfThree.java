@@ -8,14 +8,14 @@ public class MultipleOfThree {
 
         Scanner input = new Scanner(System.in);
 
-        System.out.print("¼ıÀÚ¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+        System.out.print("ìˆ«ìë¥¼ ì…ë ¥í•˜ì„¸ìš”: ");
         value = input.nextInt();
         
         if(value % 3 == 0)
-            System.out.println("ÀÔ·Â ¹ŞÀº ¼ö´Â 3ÀÇ ¹è¼öÀÔ´Ï´Ù.");
+            System.out.println("ì…ë ¥ ë°›ì€ ìˆ˜ëŠ” 3ì˜ ë°°ìˆ˜ì…ë‹ˆë‹¤.");
 
         else
-            System.out.println("ÀÔ·Â ¹ŞÀº ¼ö´Â 3ÀÇ ¹è¼ö°¡ ¾Æ´Õ´Ï´Ù.");
+            System.out.println("ì…ë ¥ ë°›ì€ ìˆ˜ëŠ” 3ì˜ ë°°ìˆ˜ê°€ ì•„ë‹™ë‹ˆë‹¤.");
         
     }
 }

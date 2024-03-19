@@ -6,7 +6,7 @@ public class ForExample1 {
 
         for (int i=0; sum < 5; i++) {
 
-            System.out.println("iÀÇ °ªÀº: "+i);
+            System.out.println("iì˜ ê°’ì€: "+i);
         }
     }
 }

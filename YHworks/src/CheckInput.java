@@ -9,20 +9,21 @@ public class CheckInput {
 
         Scanner input = new Scanner(System.in);
 
-        System.out.println("Ã¹¹øÂ° ¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä :");
+        System.out.println("ì‘ì€ ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš” :");
         min = input.nextInt();
 
-        System.out.println("µÎ¹øÂ° ¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä :");
+        System.out.println("í° ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš” :");
         max = input.nextInt();
 
         do {
             
-            System.out.println("¼ıÀÚ¸¦ ÀÔ·ÂÇÏ¼¼¿ä :");
+            System.out.println("ìˆ«ìë¥¼ ì…ë ¥í•˜ì„¸ìš” :");
             num = input.nextInt();
 
-            System.out.println("Á¤»óÀûÀ¸·Î ÀÔ·ÂµÇ¾ú½À´Ï´Ù. :"+num);
         } 
-        while (num<min || num>max); 
+        while (num>=min && num<=max); 
+
+        System.out.println("ë¹„ ì •ìƒì ìœ¼ë¡œ ì…ë ¥ë˜ì—ˆìŠµë‹ˆë‹¤. :"+num);
 
     }
 }
