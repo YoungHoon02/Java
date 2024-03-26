@@ -9,6 +9,34 @@
             "name": "MedianFive",
             "request": "launch",
             "mainClass": "MedianFive",
+            "projectName": "Java_c2f9baff"
+        },
+        {
+            "type": "java",
+            "name": "Lec3Ex2",
+            "request": "launch",
+            "mainClass": "Lec3Ex2",
+            "projectName": "Java_c2f9baff"
+        },
+        {
+            "type": "java",
+            "name": "CheckInput",
+            "request": "launch",
+            "mainClass": "CheckInput",
+            "projectName": "Java_c2f9baff"
+        },
+        {
+            "type": "java",
+            "name": "TelevisionTest",
+            "request": "launch",
+            "mainClass": "TelevisionTest",
+            "projectName": "Java_c2f9baff"
+        },
+        {
+            "type": "java",
+            "name": "MedianFive",
+            "request": "launch",
+            "mainClass": "MedianFive",
             "projectName": "Java_861d76bd"
         },
         {
