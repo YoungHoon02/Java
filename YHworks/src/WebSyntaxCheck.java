@@ -13,7 +13,7 @@ public class WebSyntaxCheck {
 
             syntax = input.nextLine();
 
-            if(syntax == "quit")
+            if(syntax.equals("quit"))
                 break;
 
             if(syntax.length() >= 3) {
