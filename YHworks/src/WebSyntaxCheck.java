@@ -13,6 +13,7 @@ public class WebSyntaxCheck {
 
             syntax = input.nextLine();
 
+            //.equals로 c의 strcat과 같은 맥락
             if(syntax.equals("quit"))
                 break;
 
