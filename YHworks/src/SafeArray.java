@@ -1,10 +1,10 @@
 public class SafeArray {
     
-    private int a[];
+    private int a[]; 
     public int length;
     public SafeArray(int size) {
 
-        a = new int[size];
+        a = new int[size]; //사이즈 지정
         length = size;
     }
 
