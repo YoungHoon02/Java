@@ -1,12 +1,18 @@
 public class Car {
     
-    String color;
-    int gear;
-    int speed;
+    private String color;
+    public int gear;
+    public int speed;
 
     public String toString() {
 
         return "Car [color="+color+"speed="+speed+"gear="+gear+"]";
+    }
+
+    //접근 지정자
+    public void setColor(String color) {
+
+        this.color = color;
     }
 
     void changeGear(int g) {
