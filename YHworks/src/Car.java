@@ -1,6 +1,6 @@
 public class Car {
     
-    private String color;
+    public static String color;
     public int gear;
     public int speed;
 
@@ -13,6 +13,11 @@ public class Car {
     public void setColor(String color) {
 
         this.color = color;
+    }
+
+    public void print() {
+
+        System.out.println("Hello, Car "+color);
     }
 
     void changeGear(int g) {
