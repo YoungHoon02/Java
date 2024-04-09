@@ -12,6 +12,7 @@ class BadBank extends Bank {
     public double getInterestRate() {
         return 10.0;
     }
+    public int ID = 3;
 }
 
 //NormalBank Class 정의
@@ -41,6 +42,10 @@ public class BankTest {
         bank[0] = new BadBank();
         bank[1] = new NormalBank();
         bank[2] = new GoodBank();
+
+        // ((BadBank)bank[0]).ID = 4; 와 같은형태
+        BadBank r = (BadBank)bank[0];
+        r.ID = 4;
 
         System.out.println("BadBank의 이자율: " + bank[0].getInterestRate());
         System.out.println("NormalBank의 이자율: " + bank[1].getInterestRate());
