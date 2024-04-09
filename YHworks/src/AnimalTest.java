@@ -9,6 +9,7 @@ class Animal {
 
 class Dog extends Animal {
 
+    @Override
     String sound() {
         return "멍멍";
 
@@ -20,6 +21,7 @@ class Dog extends Animal {
 
 class Cat extends Animal {
 
+    @Override
     String sound() {
         return "야옹";
     }

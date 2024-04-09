@@ -36,13 +36,15 @@ public class BankTest {
     
     public static void main(String[] args) {
         
-        BadBank b1 = new BadBank();
-        NormalBank b2 = new NormalBank();
-        GoodBank b3 = new GoodBank();
+        //자식클래스는 부모클래스로 정의할수있음 (상향형변환)
+        Bank[] bank = new Bank[3];
+        bank[0] = new BadBank();
+        bank[1] = new NormalBank();
+        bank[2] = new GoodBank();
 
-        System.out.println("BadBank의 이자율: " + b1.getInterestRate());
-        System.out.println("NormalBank의 이자율: " + b2.getInterestRate());
-        System.out.println("GoodBank의 이자율: " + b3.getInterestRate());
+        System.out.println("BadBank의 이자율: " + bank[0].getInterestRate());
+        System.out.println("NormalBank의 이자율: " + bank[1].getInterestRate());
+        System.out.println("GoodBank의 이자율: " + bank[2].getInterestRate());
 
     }
 }
