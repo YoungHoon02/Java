@@ -1,22 +1,15 @@
 class Bank {
     
-    private double interestRate;
-
-    //getter setter
-    double getInterestRate() {
-
-        return interestRate;
-    }
-    void setInterestRate(double rate) {
-
-        this.interestRate = rate;
+    public double getInterestRate() {
+        return 0.0;
     }
 }
 
 //BadBank Class 정의
 class BadBank extends Bank {
 
-    double getInterestRate() {
+    @Override
+    public double getInterestRate() {
         return 10.0;
     }
 }
@@ -24,7 +17,8 @@ class BadBank extends Bank {
 //NormalBank Class 정의
 class NormalBank extends Bank {
 
-    double getInterestRate() {
+    @Override
+    public double getInterestRate() {
         return 5.0;
     }
 }
@@ -32,7 +26,8 @@ class NormalBank extends Bank {
 //GoodBank Class 정의
 class GoodBank extends Bank {
 
-    double getInterestRate() {
+    @Override
+    public double getInterestRate() {
         return 3.0;
     }
 }
