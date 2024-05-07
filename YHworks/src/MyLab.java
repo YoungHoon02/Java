@@ -9,11 +9,11 @@ public class MyLab {
         f.add(panel);
 
         JPanel panel1 = new JPanel();
-        f.add(panel1);
+        panel.add(panel1);
         JPanel panel2 = new JPanel();
-        f.add(panel2);
+        panel.add(panel2);
         JPanel panel3 = new JPanel();
-        f.add(panel3);
+        panel.add(panel3);
 
         //panel1
         JLabel label1 = new JLabel("화씨 온도");

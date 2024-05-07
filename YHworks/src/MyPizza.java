@@ -9,9 +9,9 @@ public class MyPizza {
         f.add(panel);
 
         JPanel panel1 = new JPanel();
-        f.add(panel1);
+        panel.add(panel1);
         JPanel panel2 = new JPanel();
-        f.add(panel2);
+        panel.add(panel2);
 
         JLabel label = new JLabel("자바 피자에 오신 것을 환영합니다. 피자의 종류를 선택하시오.");
         panel1.add(label);
