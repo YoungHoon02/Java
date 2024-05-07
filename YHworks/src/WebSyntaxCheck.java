@@ -7,6 +7,7 @@ public class WebSyntaxCheck {
         String webString = "www";
         String syntax;
 
+        //Scanner->클래스, input->변수, new->객체생성
         Scanner input = new Scanner(System.in);
         
         while(true) {

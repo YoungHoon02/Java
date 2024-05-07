@@ -9,10 +9,10 @@ public class Car {
         return "Car [color="+color+"speed="+speed+"gear="+gear+"]";
     }
 
-    //접근 지정자
+    
     public void setColor(String color) {
 
-        this.color = color;
+        Car.color = color;
     }
 
     public void print() {

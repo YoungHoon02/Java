@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "SportsCarTest",
+            "request": "launch",
+            "mainClass": "SportsCarTest",
+            "projectName": "Java_861d76bd"
+        },
+        {
+            "type": "java",
             "name": "MedianFive",
             "request": "launch",
             "mainClass": "MedianFive",
