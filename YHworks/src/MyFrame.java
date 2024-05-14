@@ -1,9 +1,13 @@
 import javax.swing.*;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MyFrame extends JFrame{
     
+    JButton button2; //전역변수의 역할을 함
+
     public MyFrame(String title) {
 
         Toolkit kit = Toolkit.getDefaultToolkit();
@@ -20,7 +24,7 @@ public class MyFrame extends JFrame{
         JButton button = new JButton("첫문단");
         add(button, BorderLayout.PAGE_START); //NORTH도 가능
 
-        JButton button2 = new JButton("끝문단");
+        button2 = new JButton("끝문단");
         add(button2, BorderLayout.SOUTH); //PAGE_END도 가능
 
         JPanel panel2 = new JPanel();
@@ -47,6 +51,23 @@ public class MyFrame extends JFrame{
     setResizable(boolean)
     사용자가 크기를 조절할 수 있는지를 설정한다.
     */
+
+    public class MyListener implements ActionListener{
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("버튼 눌림");
+    
+            JButton button2 = (JButton) e.getSource(); //button포인터가 getSource를 통해 버튼의 객체를 받는다
+            if(button2.getText() == "끝문단") {
+                button2.setText("눌림");
+            }
+            else {
+                button2.setText("끝문단");
+            }
+            System.out.println(button2.getText());
+        }
+    }
 
     public static void main(String[] args) { //MyFrame 독자적 테스트 코드
         

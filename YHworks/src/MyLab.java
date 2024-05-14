@@ -1,6 +1,6 @@
 import javax.swing.*;
 
-public class MyLab {
+public class MyLab extends MyListener{
     
     public static void main(String[] args) {
         
@@ -29,6 +29,7 @@ public class MyLab {
 
         //panel3
         JButton button = new JButton("변환");
+        button.addActionListener(new MyListener());
         panel3.add(button);
 
         f.setSize(300, 150);
