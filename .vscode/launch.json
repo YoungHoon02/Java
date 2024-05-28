@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MyLab",
+            "request": "launch",
+            "mainClass": "MyLab",
+            "projectName": "Java_861d76bd"
+        },
+        {
+            "type": "java",
+            "name": "MyPizza",
+            "request": "launch",
+            "mainClass": "MyPizza",
+            "projectName": "Java_861d76bd"
+        },
+        {
+            "type": "java",
             "name": "SportsCarTest",
             "request": "launch",
             "mainClass": "SportsCarTest",
