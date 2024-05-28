@@ -21,7 +21,8 @@ public class WordFileManager {
                     words.add(new Word(enWord, krMeaning, pushDate, checkDate));
                 }
             }
-        } catch (IOException e) {
+        } 
+        catch (IOException e) {
             e.printStackTrace();
         }
         return words;
@@ -29,11 +30,12 @@ public class WordFileManager {
 
     //데이터를 파일에 저장
     public void saveWords(List<Word> words) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_PATH))) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_PATH, true))) {
             for (Word word : words) {
                 writer.println(word.toString());
             }
-        } catch (IOException e) {
+        } 
+        catch (IOException e) {
             e.printStackTrace();
         }
     }

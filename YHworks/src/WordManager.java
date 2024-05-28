@@ -84,7 +84,6 @@ public class WordManager extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
 
-        refreshWordList();
     }
 
     @Override
@@ -165,18 +164,10 @@ public class WordManager extends JFrame implements ActionListener {
 
     private void loadWordsFromFile() {
         List<Word> loadedWords = fileManager.loadWords();
-        words.addAll(loadedWords); // 기존 단어 리스트에 새로운 단어들을 추가
-    
-        // 입력한 영단어를 가져와서 해당하는 단어를 찾음
-        String inputWord = enWordField.getText();
-        for (Word word : words) {
-            if (word.getEnWord().equals(inputWord)) {
-                // 해당 단어의 뜻을 텍스트 필드로 설정
-                krMeaningField.setText(word.getKrMeaning());
-                break; // 단어를 찾았으므로 더 이상 반복할 필요가 없음
-            }
+        for (Word loadedWord : loadedWords) {
+            //중복 검사 없이 모든 불러온 단어를 words 리스트에 추가
+            words.add(loadedWord);
         }
-    
         refreshWordList(); // 단어 리스트 갱신
     }
 
