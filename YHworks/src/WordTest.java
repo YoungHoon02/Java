@@ -2,13 +2,12 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class WordCardAdd extends JFrame {
-    private JTextField Word;
+public class WordTest extends JFrame {
     private JTextField Meaning;
     private JTextField lastDate;
-    private JButton AddButton;
+    private JButton Button;
 
-    public WordCardAdd() {
+    public WordTest() {
         JPanel panel = new JPanel();
 
         JPanel panel1 = new JPanel();
@@ -20,10 +19,9 @@ public class WordCardAdd extends JFrame {
 
 
         //panel1
-        JLabel label1 = new JLabel("영단어: ");
-        Word = new JTextField(25);
+        JLabel label1 = new JLabel("영단어: Word"); //여기서 Word에 Word데이터를 불러옴
         panel1.add(label1);
-        panel1.add(Word);
+
 
         //panel2
         JLabel label2 = new JLabel("뜻: ");
@@ -31,24 +29,19 @@ public class WordCardAdd extends JFrame {
         panel2.add(label2);
         panel2.add(Meaning);
 
-        JLabel label3 = new JLabel("등록일: ");
-        lastDate = new JTextField(10);
-        panel2.add(label3);
-        panel2.add(lastDate);
-
         //panel3(Button)
-        AddButton = new JButton("추가");
-        AddButton.addActionListener(new ActionListener() {
+        Button = new JButton("제출");
+        Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // 단어 추가 코드를 여기에 작성하세요.
+                //if (데이터 기준) 영단어의 Word == 사용자가 입력한 뜻, 참이면 해당 데이터의 lastDate를 오늘 날짜로 갱신
             }
         });
-        panel3.add(AddButton);
+        panel3.add(Button);
 
         this.add(panel);
 
-        setTitle("낱말 카드 생성");
+        setTitle("낱말 카드");
         setSize(420, 160);
         setResizable(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
