@@ -21,7 +21,10 @@ public class WordManager extends JFrame implements ActionListener {
     private List<Word> words;
     private static final String FILE_PATH = "words.txt";
 
-    public WordManager() {
+    private WordFileManager fileManager;
+
+    public WordManager(WordFileManager fileManager) {
+        this.fileManager = fileManager;
         words = new ArrayList<>();
 
         JPanel panel = new JPanel(new BorderLayout());
@@ -74,8 +77,8 @@ public class WordManager extends JFrame implements ActionListener {
 
         this.add(panel);
 
-        loadWords();
-        setTitle("낱말 카드 관리");
+        fileManager.loadWords();
+        setTitle("단어 관리");
         setSize(500, 400);
         setResizable(false);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -93,7 +96,7 @@ public class WordManager extends JFrame implements ActionListener {
         } else if (e.getSource() == updateButton) {
             updateWord();
         } else if (e.getSource() == loadButton) {
-            loadWords();
+            loadWordsFromFile();
         }
     }
 
@@ -147,16 +150,6 @@ public class WordManager extends JFrame implements ActionListener {
         }
     }
 
-    private void loadWords() {
-        String selectedWord = enWordField.getText();
-        for (Word word : words) {
-            if (word.getEnWord().equals(selectedWord)) {
-                krMeaningField.setText(word.getKrMeaning());
-                break;
-            }
-        }
-    }
-
     private void refreshWordList() {
         listModel.clear();
         for (Word word : words) {
@@ -168,5 +161,27 @@ public class WordManager extends JFrame implements ActionListener {
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return currentDate.format(formatter);
+    }
+
+    private void loadWordsFromFile() {
+        List<Word> loadedWords = fileManager.loadWords();
+        words.addAll(loadedWords); // 기존 단어 리스트에 새로운 단어들을 추가
+    
+        // 입력한 영단어를 가져와서 해당하는 단어를 찾음
+        String inputWord = enWordField.getText();
+        for (Word word : words) {
+            if (word.getEnWord().equals(inputWord)) {
+                // 해당 단어의 뜻을 텍스트 필드로 설정
+                krMeaningField.setText(word.getKrMeaning());
+                break; // 단어를 찾았으므로 더 이상 반복할 필요가 없음
+            }
+        }
+    
+        refreshWordList(); // 단어 리스트 갱신
+    }
+
+    public static void main(String[] args) {
+        WordFileManager fileManager = new WordFileManager();
+        new WordManager(fileManager);
     }
 }

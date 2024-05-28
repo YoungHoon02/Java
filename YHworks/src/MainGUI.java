@@ -4,20 +4,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainGUI extends JFrame implements ActionListener{
-    // 단어 확인 클래스를 여기에 추가하세요.
-    
-    // 낱말 카드 GUI를 여기에 추가하세요.
-    
-    // 영어 단어 테스트 GUI를 여기에 추가하세요.
-    
-    // 단어 관리 GUI를 여기에 추가하세요.
     
     private JButton WordManagerButton;
     private JButton WordTestButton;
     private JTextArea result;
+    private WordFileManager fileManager;
     
     public MainGUI() {
         
+        fileManager = new WordFileManager();
+
         //WordManagerButton
         WordManagerButton = new JButton("단어 관리");
         WordManagerButton.addActionListener(this);
@@ -52,7 +48,7 @@ public class MainGUI extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == WordManagerButton) { //WordManagerButton 작동시 단어 관리페이지 오픈
-            new WordManager();
+            new WordManager(fileManager);
         }
     }
 }
