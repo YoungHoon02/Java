@@ -19,7 +19,7 @@ public class WordManager extends JFrame implements ActionListener {
     private JList<String> wordList;
     private DefaultListModel<String> listModel;
     private List<Word> words;
-    private static final String FILE_PATH = "words.txt";
+    private static final String FILE_PATH = "words.csv";
 
     private WordFileManager fileManager;
 
@@ -31,7 +31,7 @@ public class WordManager extends JFrame implements ActionListener {
         JPanel inputPanel = new JPanel(new GridLayout(3, 2)); //입력부
         JPanel buttonPanel = new JPanel(new FlowLayout()); //버튼부
 
-        // 입력 필드
+        //입력 필드
         JLabel enWordLabel = new JLabel("영단어: ");
         enWordField = new JTextField(25);
         inputPanel.add(enWordLabel);
@@ -49,7 +49,7 @@ public class WordManager extends JFrame implements ActionListener {
         inputPanel.add(pushDateLabel);
         inputPanel.add(pushDateField);
 
-        // 버튼들
+        //버튼들
         addButton = new JButton("추가");
         addButton.addActionListener(this);
         buttonPanel.add(addButton);
@@ -62,11 +62,11 @@ public class WordManager extends JFrame implements ActionListener {
         updateButton.addActionListener(this);
         buttonPanel.add(updateButton);
 
-        loadButton = new JButton("보기");
+        loadButton = new JButton("불러오기");
         loadButton.addActionListener(this);
         buttonPanel.add(loadButton);
 
-        // 단어 리스트
+        //단어 리스트
         listModel = new DefaultListModel<>();
         wordList = new JList<>(listModel);
         JScrollPane listScrollPane = new JScrollPane(wordList);
@@ -103,11 +103,11 @@ public class WordManager extends JFrame implements ActionListener {
         String enWord = enWordField.getText();
         String krMeaning = krMeaningField.getText();
         String pushDate = pushDateField.getText();
-        String checkDate = ""; //초기 확인일은 빈 문자열로 설정
+        String checkDate = ""; //초기 확인일은 공백
 
         Word word = new Word(enWord, krMeaning, pushDate, checkDate);
         words.add(word);
-        saveWords();
+        fileManager.saveWords(words);
         refreshWordList();
 
         //입력 필드 초기화
@@ -119,7 +119,7 @@ public class WordManager extends JFrame implements ActionListener {
         String selectedWord = enWordField.getText();
         words.removeIf(word -> word.getEnWord().equals(selectedWord));
 
-        saveWords();
+        fileManager.saveWords(words);
         refreshWordList();
 
         enWordField.setText("");
@@ -132,20 +132,10 @@ public class WordManager extends JFrame implements ActionListener {
         for (Word word : words) {
             if (word.getEnWord().equals(selectedWord)) {
                 word.setKrMeaning(newMeaning);
-                saveWords();
+                fileManager.saveWords(words);
                 refreshWordList();
                 break;
             }
-        }
-    }
-
-    private void saveWords() {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_PATH))) {
-            for (Word word : words) {
-                writer.println(word.toString());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -163,12 +153,16 @@ public class WordManager extends JFrame implements ActionListener {
     }
 
     private void loadWordsFromFile() {
+        words.clear(); //리스트 비움
         List<Word> loadedWords = fileManager.loadWords();
-        for (Word loadedWord : loadedWords) {
-            //중복 검사 없이 모든 불러온 단어를 words 리스트에 추가
-            words.add(loadedWord);
+        if (loadedWords != null) { //파일이 공백이 아닌지 검사
+            for (Word word : loadedWords) {
+                if (word != null) { //단어가 공백이 아닌지 검사
+                    words.add(word); 
+                }
+            }
         }
-        refreshWordList(); // 단어 리스트 갱신
+        refreshWordList(); //갱신
     }
 
     public static void main(String[] args) {

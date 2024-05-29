@@ -50,5 +50,8 @@ public class MainGUI extends JFrame implements ActionListener{
         if (e.getSource() == WordManagerButton) { //WordManagerButton 작동시 단어 관리페이지 오픈
             new WordManager(fileManager);
         }
+        else if (e.getSource() == WordTestButton) {
+            new WordTest();
+        }
     }
 }
