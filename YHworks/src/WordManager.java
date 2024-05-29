@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -19,7 +18,6 @@ public class WordManager extends JFrame implements ActionListener {
     private JList<String> wordList;
     private DefaultListModel<String> listModel;
     private List<Word> words;
-    private static final String FILE_PATH = "words.csv";
 
     private WordFileManager fileManager;
 
