@@ -1,13 +1,22 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
-public class WordTest extends JFrame {
+//무작위 단어 카드 GUI
+public class WordTest extends JFrame implements ActionListener{
     private JTextField Meaning;
-    private JTextField lastDate;
     private JButton Button;
+    private Word RandomWord;
+    private WordFileManager fileManager;
+    private List<Word> words;
 
-    public WordTest() {
+    public WordTest(WordFileManager fileManager) {
+        this.fileManager = fileManager;
+        this.words = fileManager.loadWords();
+
         JPanel panel = new JPanel();
 
         JPanel panel1 = new JPanel();
@@ -17,9 +26,10 @@ public class WordTest extends JFrame {
         JPanel panel3 = new JPanel();
         panel.add(panel3);
 
+        RandomWord = getRandomWord();
 
         //panel1
-        JLabel label1 = new JLabel("영단어: Word"); //여기서 Word에 Word데이터를 불러옴
+        JLabel label1 = new JLabel("영단어: "+ RandomWord.getEnWord()); //여기서 RandomWord에 무작위Word데이터를 불러옴
         panel1.add(label1);
 
 
@@ -31,12 +41,7 @@ public class WordTest extends JFrame {
 
         //panel3(Button)
         Button = new JButton("제출");
-        Button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //if (데이터 기준) 영단어의 Word == 사용자가 입력한 뜻, 참이면 해당 데이터의 lastDate를 오늘 날짜로 갱신
-            }
-        });
+        Button.addActionListener(this);
         panel3.add(Button);
 
         this.add(panel);
@@ -48,7 +53,44 @@ public class WordTest extends JFrame {
         setVisible(true);
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == Button) {
+            checkAnswer();
+        }
+    }
+
+    //무작위 단어 선택
+    private Word getRandomWord() {
+        Random random = new Random();
+        return words.get(random.nextInt(words.size()));
+    }
+
+    //단어 검사기
+    private void checkAnswer() {
+        String pushMeaning = Meaning.getText();
+        if (pushMeaning.equals(RandomWord.getKrMeaning())) {
+            JOptionPane.showMessageDialog(this, "정답입니다.");
+            updateLastDate(RandomWord);
+
+            dispose();
+        } 
+        else {
+            JOptionPane.showMessageDialog(this, "틀렸습니다.");
+            dispose();
+        }
+    }
+
+    //정답맞춘 날짜 갱신
+    private void updateLastDate(Word word) {
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        word.setCheckDate(currentDate.format(formatter));
+        fileManager.saveWords(words);
+    }
+
     public static void main(String[] args) {
-        new WordTest();
+        WordFileManager fileManager = new WordFileManager();
+        new WordTest(fileManager);
     }
 }

@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+//단어 GUI
 public class WordManager extends JFrame implements ActionListener {
     private JTextField enWordField;
     private JTextField krMeaningField;
@@ -97,6 +98,7 @@ public class WordManager extends JFrame implements ActionListener {
         }
     }
 
+    //단어 추가
     private void addWord() {
         String enWord = enWordField.getText();
         String krMeaning = krMeaningField.getText();
@@ -113,6 +115,7 @@ public class WordManager extends JFrame implements ActionListener {
         krMeaningField.setText("");
     }
 
+    //단어 제거
     private void deleteWord() {
         String selectedWord = enWordField.getText();
         words.removeIf(word -> word.getEnWord().equals(selectedWord));
@@ -124,10 +127,12 @@ public class WordManager extends JFrame implements ActionListener {
         krMeaningField.setText("");
     }
 
+    //단어 수정
     private void updateWord() {
+        //사용자가 입력한 textfield 영단어,뜻을 읽어옴
         String selectedWord = enWordField.getText();
         String newMeaning = krMeaningField.getText();
-        for (Word word : words) {
+        for (Word word : words) { //word 리스트 탐색
             if (word.getEnWord().equals(selectedWord)) {
                 word.setKrMeaning(newMeaning);
                 fileManager.saveWords(words);
@@ -137,19 +142,22 @@ public class WordManager extends JFrame implements ActionListener {
         }
     }
 
+    //단어추가 내부 리스트 갱신
     private void refreshWordList() {
-        listModel.clear();
-        for (Word word : words) {
+        listModel.clear(); 
+        for (Word word : words) { 
             listModel.addElement(word.toString());
         }
     }
 
+    //현재 날짜 불러오기
     private String getCurrentDate() {
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return currentDate.format(formatter);
     }
 
+    //csv파일 내부에서 단어 가져오기
     private void loadWordsFromFile() {
         words.clear(); //리스트 비움
         List<Word> loadedWords = fileManager.loadWords();

@@ -3,14 +3,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainGUI extends JFrame implements ActionListener{
+//단어장의 기본 메인페이지 역할 GUI
+public class WordMainGUI extends JFrame implements ActionListener{
     
     private JButton WordManagerButton;
     private JButton WordTestButton;
     private JTextArea result;
     private WordFileManager fileManager;
     
-    public MainGUI() {
+    public WordMainGUI() {
         
         fileManager = new WordFileManager();
 
@@ -42,7 +43,7 @@ public class MainGUI extends JFrame implements ActionListener{
     }
 
     public static void main(String[] args) {
-        new MainGUI();
+        new WordMainGUI();
     }
 
     @Override
@@ -51,7 +52,7 @@ public class MainGUI extends JFrame implements ActionListener{
             new WordManager(fileManager);
         }
         else if (e.getSource() == WordTestButton) {
-            new WordTest();
+            new WordTest(fileManager);
         }
     }
 }
