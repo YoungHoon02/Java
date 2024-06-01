@@ -20,7 +20,7 @@ public class WordMemoryTest extends JFrame implements ActionListener {
         this.fileManager = fileManager;
         this.words = fileManager.loadWords();
 
-        //문제 갯수 입력
+        //문제 갯수 입력 다이얼로그
         String input = JOptionPane.showInputDialog(this, "문제 수", "10");
         if (!input.isEmpty()) {
             questsCount = Integer.parseInt(input);
@@ -53,7 +53,7 @@ public class WordMemoryTest extends JFrame implements ActionListener {
 
             RandomWords[i] = getRandomWord();
 
-            //동일한 영어가 있으면 제외
+            //addedWords 스택에 들어오는 RandomWords 영단어의 중복을 방지
             while (addedWords.contains(RandomWords[i].getEnWord())) {
                 RandomWords[i] = getRandomWord();
             }
@@ -130,6 +130,7 @@ public class WordMemoryTest extends JFrame implements ActionListener {
         }
 
         fileManager.saveTestResult(getCurrentDate(), questsCount, passCount, failCount);
+        
         dispose();
     }
 

@@ -29,7 +29,7 @@ public class WordTest extends JFrame implements ActionListener{
         RandomWord = getRandomWord();
 
         //panel1
-        JLabel label1 = new JLabel("영단어: "+ RandomWord.getEnWord()); //여기서 RandomWord에 무작위Word데이터를 불러옴
+        JLabel label1 = new JLabel("영단어: "+ RandomWord.getEnWord());
         panel1.add(label1);
 
 
@@ -48,7 +48,7 @@ public class WordTest extends JFrame implements ActionListener{
 
         setTitle("낱말 카드");
         setSize(420, 160);
-        setResizable(false);
+        setResizable(false); 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
     }

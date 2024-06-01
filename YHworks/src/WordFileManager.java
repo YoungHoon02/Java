@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 //데이터(단어)가 파일과 상호작용하는 클래스
 public class WordFileManager {
-    private static final String FILE_PATH = "words.csv";
+    private static final String FILE_PATH = "words.csv"; //상수 선언(단어장)
 
     //파일에서 데이터를 개방
     public List<Word> loadWords() {
@@ -61,9 +61,9 @@ public class WordFileManager {
     }
 
     //단어 시험 결과 저장
-    public void saveTestResult(String date, int questsCount, int passCount, int failCount) {
+    public void saveTestResult(String currentDate, int questsCount, int passCount, int failCount) {
         try (PrintWriter writer = new PrintWriter(new FileWriter("testResult.csv", true))) {
-            writer.println("응시날짜: " + date + "," + "문항 수: " + questsCount + "," + "정답 수: " + passCount + "," + "오답 수: " + failCount);
+            writer.println("응시날짜: " + currentDate + "," + "문항 수: " + questsCount + "," + "정답 수: " + passCount + "," + "오답 수: " + failCount);
         } 
         catch (IOException e) {
             e.printStackTrace();

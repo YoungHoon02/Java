@@ -62,10 +62,10 @@ public class WordMainGUI extends JFrame implements ActionListener{
         if (e.getSource() == WordManagerButton) { //WordManagerButton 작동시 단어 관리페이지 오픈
             new WordManager(fileManager);
         }
-        else if (e.getSource() == WordTestButton) {
+        else if (e.getSource() == WordTestButton) { //WordTestButton 작동시 낱말 카드 오픈
             new WordTest(fileManager);
         }
-        else if (e.getSource() == WordMemoryTestButton) {
+        else if (e.getSource() == WordMemoryTestButton) { //WordMemoryTestButton 작동시 단어 시험페이지 오픈
             new WordMemoryTest(fileManager);
         }
     }

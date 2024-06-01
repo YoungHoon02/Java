@@ -11,33 +11,38 @@ public class Word {
         this.checkDate = checkDate;
     }
 
-    //get, set 구현
+    //단어 getter
     public String getEnWord() {
         return enWord;
     }
 
+    //뜻 getter
     public String getKrMeaning() {
         return krMeaning;
     }
 
+    //단어 추가 날짜 getter
     public String getPushDate() {
         return pushDate;
     }
 
+    //단어 맞춘 날짜 getter
     public String getCheckDate() {
         return checkDate;
     }
 
+    //뜻 setter
     public void setKrMeaning(String krMeaning) {
         this.krMeaning = krMeaning;
     }
 
+    //날짜 setter
     public void setCheckDate(String checkDate) {
         this.checkDate = checkDate;
     }
 
     @Override
-    public String toString() { //CSV형식과 비슷하게 반환(저장하기 편하게)
+    public String toString() { //CSV형식
         return enWord + "," + krMeaning + "," + pushDate + "," + checkDate;
     }
 }

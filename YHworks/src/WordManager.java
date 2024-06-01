@@ -17,7 +17,7 @@ public class WordManager extends JFrame implements ActionListener {
     private JButton updateButton;
     private JButton loadButton;
     private JList<String> wordList;
-    private DefaultListModel<String> listModel;
+    private DefaultListModel<String> wordListData;
     private List<Word> words;
 
     private WordFileManager fileManager;
@@ -66,8 +66,8 @@ public class WordManager extends JFrame implements ActionListener {
         buttonPanel.add(loadButton);
 
         //단어 리스트
-        listModel = new DefaultListModel<>();
-        wordList = new JList<>(listModel);
+        wordListData = new DefaultListModel<>();
+        wordList = new JList<>(wordListData);
         JScrollPane listScrollPane = new JScrollPane(wordList);
 
         panel.add(inputPanel, BorderLayout.NORTH);
@@ -144,9 +144,9 @@ public class WordManager extends JFrame implements ActionListener {
 
     //단어추가 내부 리스트 갱신
     private void refreshWordList() {
-        listModel.clear(); 
+        wordListData.clear(); 
         for (Word word : words) { 
-            listModel.addElement(word.toString());
+            wordListData.addElement(word.toString());
         }
     }
 
@@ -159,7 +159,7 @@ public class WordManager extends JFrame implements ActionListener {
 
     //csv파일 내부에서 단어 가져오기
     private void loadWordsFromFile() {
-        words.clear(); //리스트 비움
+        words.clear();
         List<Word> loadedWords = fileManager.loadWords();
         if (loadedWords != null) { //파일이 공백이 아닌지 검사
             for (Word word : loadedWords) {
@@ -168,7 +168,7 @@ public class WordManager extends JFrame implements ActionListener {
                 }
             }
         }
-        refreshWordList(); //갱신
+        refreshWordList();
     }
 
     public static void main(String[] args) {
