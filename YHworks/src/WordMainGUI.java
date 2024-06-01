@@ -8,6 +8,7 @@ public class WordMainGUI extends JFrame implements ActionListener{
     
     private JButton WordManagerButton;
     private JButton WordTestButton;
+    private JButton WordMemoryTestButton;
     private JTextArea result;
     private WordFileManager fileManager;
     
@@ -19,21 +20,31 @@ public class WordMainGUI extends JFrame implements ActionListener{
         WordManagerButton = new JButton("단어 관리");
         WordManagerButton.addActionListener(this);
         
-        //WordTest
-        WordTestButton = new JButton("영어 단어 암기 test");
+        //WordTestButton
+        WordTestButton = new JButton("낱말 카드");
         WordTestButton.addActionListener(this);
+
+        //WordMemoryTestButton
+        WordMemoryTestButton = new JButton("단어 암기");
+        WordMemoryTestButton.addActionListener(this);
         
         //최근 결과 areafield
         result = new JTextArea();
+        result.setText(fileManager.loadTestResult());
         result.setEditable(false);
+
+        //단어 갯수 field
+        JLabel wordsCount = new JLabel("단어 갯수:" + fileManager.getWordsCount());
         
         //main panel
         JPanel panel = new JPanel();
         panel.add(WordManagerButton);
         panel.add(WordTestButton);
+        panel.add(WordMemoryTestButton);
         
         add(panel, BorderLayout.NORTH);
         add(result, BorderLayout.CENTER);
+        add(wordsCount, BorderLayout.SOUTH);
         
         setTitle("영단어 암기 프로그램");
         setSize(380, 280);
@@ -53,6 +64,9 @@ public class WordMainGUI extends JFrame implements ActionListener{
         }
         else if (e.getSource() == WordTestButton) {
             new WordTest(fileManager);
+        }
+        else if (e.getSource() == WordMemoryTestButton) {
+            new WordMemoryTest(fileManager);
         }
     }
 }

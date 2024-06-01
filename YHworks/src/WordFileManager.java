@@ -45,7 +45,7 @@ public class WordFileManager {
 
     //데이터를 파일에 저장
     public void saveWords(List<Word> words) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_PATH, false))) { // false로 설정하여 파일을 덮어씀
+        try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_PATH, false))) {
             for (Word word : words) {
                 writer.println(word.toString());
             }
@@ -54,4 +54,34 @@ public class WordFileManager {
             e.printStackTrace();
         }
     }
+
+    //총 단어의 갯수
+    public int getWordsCount() {
+        return loadWords().size();
+    }
+
+    //단어 시험 결과 저장
+    public void saveTestResult(String date, int questsCount, int passCount, int failCount) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter("testResult.csv", true))) {
+            writer.println("응시날짜: " + date + "," + "문항 수: " + questsCount + "," + "정답 수: " + passCount + "," + "오답 수: " + failCount);
+        } 
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //단어 시험 결과 불러오기
+    public String loadTestResult() {
+        String result = "";
+        try (Scanner scanner = new Scanner(new File("testResult.csv"))) {
+            while (scanner.hasNextLine()) {
+                result = scanner.nextLine();
+            }
+        } 
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
 }

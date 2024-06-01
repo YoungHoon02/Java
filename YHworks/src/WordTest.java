@@ -69,16 +69,30 @@ public class WordTest extends JFrame implements ActionListener{
     //단어 검사기
     private void checkAnswer() {
         String pushMeaning = Meaning.getText();
-        if (pushMeaning.equals(RandomWord.getKrMeaning())) {
-            JOptionPane.showMessageDialog(this, "정답입니다.");
-            updateLastDate(RandomWord);
+        boolean correctTrigger = false; //정답 유무 트리거
 
-            dispose();
+        //리스트를 전부 순회
+        for (Word word : words) {
+            if (word.getEnWord().equals(RandomWord.getEnWord()) && pushMeaning.equals(word.getKrMeaning())) {
+                correctTrigger = true;
+            }
+        }
+    
+        if (correctTrigger == true) {
+            JOptionPane.showMessageDialog(this, "정답입니다.");
+
+            //다시 리스트를 순회해 EnWord가 전부 정답처리되어 날짜가 갱신됨
+            for (Word word : words) {
+                if (word.getEnWord().equals(RandomWord.getEnWord())) {
+                    updateLastDate(word);
+                }
+            }
         } 
         else {
             JOptionPane.showMessageDialog(this, "틀렸습니다.");
-            dispose();
         }
+    
+        dispose();
     }
 
     //정답맞춘 날짜 갱신
