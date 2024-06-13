@@ -6,9 +6,16 @@
     "configurations": [
         {
             "type": "java",
+            "name": "WordMainGUI",
+            "request": "launch",
+            "mainClass": "WordMainGUI",
+            "projectName": "YHworks_12cd4881"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
-        },
+        }
     ]
 }

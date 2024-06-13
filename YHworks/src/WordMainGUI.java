@@ -6,37 +6,37 @@ import java.awt.event.ActionListener;
 //단어장의 기본 메인페이지 역할 GUI
 public class WordMainGUI extends JFrame implements ActionListener{
     
-    private JButton WordManagerButton;
-    private JButton WordTestButton;
-    private JButton WordMemoryTestButton;
-    private JTextArea result;
-    private WordFileManager fileManager;
+    private JButton WordManagerButton; //단어 관리 버튼
+    private JButton WordTestButton; //낱말 카드 버튼
+    private JButton WordMemoryTestButton; //단어 암기 시험 버튼
+    private JTextArea result; //시험 결과 텍스트영역
+    private WordFileManager fileManager; //파일 관리 객체
     
     public WordMainGUI() {
         
         fileManager = new WordFileManager();
 
-        //WordManagerButton
+        //단어 관리 버튼 생성
         WordManagerButton = new JButton("단어 관리");
         WordManagerButton.addActionListener(this);
         
-        //WordTestButton
+        //낱말 카드 버튼 생성
         WordTestButton = new JButton("낱말 카드");
         WordTestButton.addActionListener(this);
 
-        //WordMemoryTestButton
+        //단어 암기 시험 버튼 생성
         WordMemoryTestButton = new JButton("단어 암기");
         WordMemoryTestButton.addActionListener(this);
         
-        //최근 결과 areafield
+        //최근 결과 텍스트영역 생성
         result = new JTextArea();
         result.setText(fileManager.loadTestResult());
         result.setEditable(false);
 
-        //단어 갯수 field
+        //총 보유중인 단어 갯수 레이블 생성
         JLabel wordsCount = new JLabel("단어 갯수:" + fileManager.getWordsCount());
         
-        //main panel
+        //메인 패널 생성
         JPanel panel = new JPanel();
         panel.add(WordManagerButton);
         panel.add(WordTestButton);

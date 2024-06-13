@@ -9,12 +9,12 @@ import java.util.*;
 
 // 영어 단어 암기 테스트 GUI
 public class WordMemoryTest extends JFrame implements ActionListener {
-    private JTextField[] Meanings;
-    private JButton Button;
-    private Word[] RandomWords;
-    private WordFileManager fileManager;
-    private List<Word> words;
-    private int questsCount = 10; //문제 갯수 입력
+    private JTextField[] Meanings; //한글뜻 정답 입력 필드의 배열
+    private JButton DoneButton; //제출하기 버튼
+    private Word[] RandomWords; //랜덤으로 단어 선택하는 배열
+    private WordFileManager fileManager; //파일 관리 객체
+    private List<Word> words; //단어 리스트
+    private int questsCount = 10; //문제 갯수 (10이 기본값)
 
     public WordMemoryTest(WordFileManager fileManager) {
         this.fileManager = fileManager;
@@ -48,6 +48,7 @@ public class WordMemoryTest extends JFrame implements ActionListener {
         Meanings = new JTextField[questsCount];
         RandomWords = new Word[questsCount];
 
+        //문제 갯수만큼 랜덤 단어 뽑기 및 시험창에 띄움
         for (int i = 0; i < questsCount; i++) {
             JPanel wordPanel = new JPanel();
 
@@ -59,13 +60,13 @@ public class WordMemoryTest extends JFrame implements ActionListener {
             }
             addedWords.add(RandomWords[i].getEnWord());
 
-            //panel1
+            //단어를 표시하는 패널 생성
             JLabel label1 = new JLabel(RandomWords[i].getEnWord()); //여기서 RandomWord에 무작위 Word 데이터를 불러옴
 
             label1.setHorizontalAlignment(JLabel.CENTER);
             wordPanel.add(label1);
 
-            //panel2
+            //답지 패널 생성
             JLabel label2 = new JLabel("뜻: ");
             Meanings[i] = new JTextField(12);
             wordPanel.add(label2);
@@ -74,10 +75,10 @@ public class WordMemoryTest extends JFrame implements ActionListener {
             panel.add(wordPanel);
         }
 
-        //panel3(Button)
-        Button = new JButton("제출");
-        Button.addActionListener(this);
-        panel3.add(Button);
+        //제출 버튼 생성
+        DoneButton = new JButton("제출");
+        DoneButton.addActionListener(this);
+        panel3.add(DoneButton);
 
         this.add(panel, BorderLayout.CENTER);
         this.add(panel3, BorderLayout.SOUTH);
@@ -90,7 +91,7 @@ public class WordMemoryTest extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == Button) {
+        if (e.getSource() == DoneButton) {
             checkAnswer();
         }
     }
@@ -101,7 +102,7 @@ public class WordMemoryTest extends JFrame implements ActionListener {
         return words.get(random.nextInt(words.size()));
     }
 
-    //단어 검사기
+    //정답을 확인하는 메소드
     private void checkAnswer() {
         int passCount = 0; //정답 갯수
         int failCount = 0; //오답 갯수
@@ -134,18 +135,20 @@ public class WordMemoryTest extends JFrame implements ActionListener {
         dispose();
     }
 
-    //정답맞춘 날짜 갱신
+    //정답맞춘 날짜 갱신하는 메소드
     private void updateLastDate(Word word) {
         word.setCheckDate(getCurrentDate());
         fileManager.saveWords(words);
     }
 
+    //현재 날짜를 반환하는 메소드
     private String getCurrentDate() {
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return currentDate.format(formatter);
     }
 
+    //테스트용 메소드
     public static void main(String[] args) {
         WordFileManager fileManager = new WordFileManager();
         new WordMemoryTest(fileManager);

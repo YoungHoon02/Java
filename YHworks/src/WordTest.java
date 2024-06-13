@@ -7,11 +7,11 @@ import java.util.*;
 
 //무작위 단어 카드 GUI
 public class WordTest extends JFrame implements ActionListener{
-    private JTextField Meaning;
-    private JButton Button;
-    private Word RandomWord;
-    private WordFileManager fileManager;
-    private List<Word> words;
+    private JTextField Meaning; //한글뜻 입력 필드
+    private JButton DoneButton; //제출하기 버튼
+    private Word RandomWord; //랜덤으로 단어 선택하는 객체
+    private WordFileManager fileManager; //파일 관리 객체
+    private List<Word> words; //단어 리스트
 
     public WordTest(WordFileManager fileManager) {
         this.fileManager = fileManager;
@@ -28,21 +28,21 @@ public class WordTest extends JFrame implements ActionListener{
 
         RandomWord = getRandomWord();
 
-        //panel1
+        //단어 패널 생성
         JLabel label1 = new JLabel("영단어: "+ RandomWord.getEnWord());
         panel1.add(label1);
 
 
-        //panel2
+        //한글뜻 패널 생성
         JLabel label2 = new JLabel("뜻: ");
         Meaning = new JTextField(12);
         panel2.add(label2);
         panel2.add(Meaning);
 
-        //panel3(Button)
-        Button = new JButton("제출");
-        Button.addActionListener(this);
-        panel3.add(Button);
+        //제출 버튼 생성
+        DoneButton = new JButton("제출");
+        DoneButton.addActionListener(this);
+        panel3.add(DoneButton);
 
         this.add(panel);
 
@@ -55,7 +55,7 @@ public class WordTest extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == Button) {
+        if(e.getSource() == DoneButton) {
             checkAnswer();
         }
     }
@@ -66,7 +66,7 @@ public class WordTest extends JFrame implements ActionListener{
         return words.get(random.nextInt(words.size()));
     }
 
-    //단어 검사기
+    //정답을 확인하는 메소드
     private void checkAnswer() {
         String pushMeaning = Meaning.getText();
         boolean correctTrigger = false; //정답 유무 트리거
@@ -95,7 +95,7 @@ public class WordTest extends JFrame implements ActionListener{
         dispose();
     }
 
-    //정답맞춘 날짜 갱신
+    //정답맞춘 날짜 갱신하는 메소드
     private void updateLastDate(Word word) {
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -103,6 +103,7 @@ public class WordTest extends JFrame implements ActionListener{
         fileManager.saveWords(words);
     }
 
+    //테스트용 메소드
     public static void main(String[] args) {
         WordFileManager fileManager = new WordFileManager();
         new WordTest(fileManager);

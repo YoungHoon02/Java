@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 public class WordFileManager {
     private static final String WORDS_FILE = "words.csv"; //상수 선언(단어장)
 
-    //파일에서 데이터를 개방
+    //파일에서 단어를 불러오는 메소드
     public List<Word> loadWords() {
     List<Word> words = new ArrayList<>();
     try {
@@ -31,7 +31,7 @@ public class WordFileManager {
     return words;
 }
 
-    //데이터 생성함수
+    //csv 양식에 맞춰 단어 객체를 생성하는 메소드
     private Word createWords(String line) {
         String[] node = line.split(",");
         if (node.length >= 3) {
@@ -42,11 +42,11 @@ public class WordFileManager {
             
             return new Word(enWord, krMeaning, pushDate, checkDate);
         }
-        //예기치 못한 상황에 null 대신 공백으로 저장
+        //예기치 못한 상황에 null로 저장되는 것을 방지하기 위해 공백 객체 반환
         return new Word("", "", "", "");
     }
 
-    //데이터를 파일에 저장
+    //단어 리스트를 파일에 저장하는 메소드
     public void saveWords(List<Word> words) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(WORDS_FILE, false))) {
             for (Word word : words) {
@@ -58,12 +58,12 @@ public class WordFileManager {
         }
     }
 
-    //총 단어의 갯수
+    //단어장에 들어있는 총 단어의 갯수를 반환하는 메소드
     public int getWordsCount() {
         return loadWords().size();
     }
 
-    //단어 시험 결과 저장
+    //단어 시험 결과 저장하는 메소드
     public void saveTestResult(String currentDate, int questsCount, int passCount, int failCount) {
         try (PrintWriter writer = new PrintWriter(new FileWriter("testResult.csv", true))) {
             writer.println("응시날짜: " + currentDate + "," + "문항 수: " + questsCount + "," + "정답 수: " + passCount + "," + "오답 수: " + failCount);
@@ -73,7 +73,7 @@ public class WordFileManager {
         }
     }
 
-    //단어 시험 결과 불러오기
+    //단어 시험 결과를 불러오는 메소드
     public String loadTestResult() {
     String result = "";
     try {

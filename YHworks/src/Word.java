@@ -4,6 +4,7 @@ public class Word {
     private String pushDate; //추가한날짜
     private String checkDate; //맞춘날짜
 
+    //단어 Word 객체 생성자
     public Word(String enWord, String krMeaning, String pushDate, String checkDate) {
         this.enWord = enWord;
         this.krMeaning = krMeaning;
@@ -11,32 +12,32 @@ public class Word {
         this.checkDate = checkDate;
     }
 
-    //단어 getter
+    //영어 단어를 반환
     public String getEnWord() {
         return enWord;
     }
 
-    //뜻 getter
+    //한글 뜻을 반환
     public String getKrMeaning() {
         return krMeaning;
     }
 
-    //단어 추가 날짜 getter
+    //단어 추가한 날짜 반환
     public String getPushDate() {
         return pushDate;
     }
 
-    //단어 맞춘 날짜 getter
+    //단어 마지막으로 맞춘 날짜 반환
     public String getCheckDate() {
         return checkDate;
     }
 
-    //뜻 setter
+    //한글 뜻을 설정
     public void setKrMeaning(String krMeaning) {
         this.krMeaning = krMeaning;
     }
 
-    //날짜 setter
+    //날짜를 설정
     public void setCheckDate(String checkDate) {
         this.checkDate = checkDate;
     }
